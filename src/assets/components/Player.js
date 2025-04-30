@@ -14,8 +14,7 @@ export default class Player {
 
   saluto() {
     console.log(
-      `ciao sono ${this.name}, ho ${this.attack} di attacco e ${this.defense} di difesa. La mia vita è di ${this.hp};
-      sono un ${this.type}`
+      `ciao sono ${this.name},sono un ${this.race.type} ed ho ${this.race.attack} di attacco e ${this.race.defense} di difesa. La mia vita è di ${this.race.hp}.`
     );
   }
 }
