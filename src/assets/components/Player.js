@@ -1,15 +1,25 @@
 import Race from "./Race";
+import Weapon from "./Weapon";
 export default class Player {
-  name;
+  title;
   race;
+  weapon;
 
-  constructor(name, race) {
-    this.name = name;
+  constructor(name, race, weapon) {
+    this.title = name;
     this.race = new Race(race.attack, race.defense, race.hp, race.type);
+    this.weapon = new Weapon(
+      weapon.name,
+      weapon.bonusAttack,
+      weapon.bonusDefense
+    );
     this.attack = this.race.attack;
     this.defense = this.race.defense;
     this.hp = this.race.hp;
     this.type = this.race.type;
+    this.name = this.weapon.name;
+    this.bonusAttack = this.weapon.bonusAttack;
+    this.bonusDefense = this.weapon.bonusDefense;
   }
 
   saluto() {
