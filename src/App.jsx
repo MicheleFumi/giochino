@@ -115,10 +115,8 @@ function App() {
                   onChange={(e) => setSelectedSkill(e.target.value)}
                   checked={selectedSkill === skill.abilityName}
                 />
-                <label className="form-check-label">
-                  {skill.abilityName} -
-                </label>
-                <small> {skill.description}</small>
+                <label className="form-check-label">{skill.abilityName}:</label>
+                <small className="text-white"> {skill.description}</small>
               </div>
             ))}
             <button

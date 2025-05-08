@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap");
+
+body {
+  background: url("https://www.transparenttextures.com/patterns/dark-wood.png")
+    repeat;
+  color: #f4f4f4;
+  font-family: "Cinzel", serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background-color: rgba(30, 30, 30, 0.95);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 15px #000;
+  max-width: 900px;
+  margin: auto;
+}
+
+h4,
+h2 {
+  color: #ffd700;
+  text-align: center;
+  text-shadow: 1px 1px 3px #000;
+}
+
+.form-label {
+  font-weight: bold;
+  color: #d6d6d6;
+}
+
+.form-check-label {
+  color: #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.form-check-label strong {
+  color: #ffcc00;
+}
+
+.form-check-input:checked + .form-check-label {
+  color: #00ffd5;
+  font-weight: bold;
+  text-shadow: 0 0 6px #00ffd5;
+}
+
+input[type="text"] {
+  background-color: #333;
+  color: #f4f4f4;
+  border: 1px solid #555;
+}
+
+input[type="text"]::placeholder {
+  color: #999;
+}
+
+input[type="text"]:focus {
+  background-color: #222;
+  color: #fff;
+  border-color: #ffaa00;
+  box-shadow: 0 0 5px #ffaa00;
+}
+
+.btn-primary {
+  background: linear-gradient(145deg, #5e2d1b, #aa6838);
+  border: none;
+  font-weight: bold;
+  color: #fffbe6;
+  text-shadow: 1px 1px 2px #000;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(145deg, #7a4113, #d48443);
+  color: #fff;
+}
+
+.shadow-sm {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6) !important;
+}
+
+.bg-light {
+  background-color: #2a2a2a !important;
+}
+
+.bg-white {
+  background-color: #1b1b1b !important;
+  color: #f4f4f4;
+}
