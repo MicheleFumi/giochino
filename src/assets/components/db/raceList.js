@@ -7,19 +7,19 @@ const raceList = [
     racialAbilities: [
       {
         abilityName: "Visione notturna",
-        description: "Permette di vedere al buio fino a 30 metri.",
+        description: "Permette di vedere al buio fino a 30 metri. DEF: +3",
         trigger: "In ambienti bui",
         bonus: { defense: 3 },
       },
       {
         abilityName: "Tiro preciso",
-        description: "Aumenta la precisione con armi a distanza.",
+        description: "Aumenta la precisione con armi a distanza. ATT: +2",
         trigger: "Sempre attiva",
         bonus: { attack: 2, appliesTo: "ranged" },
       },
       {
         abilityName: "Agilità superiore",
-        description: "Aumenta la velocità di movimento.",
+        description: "Aumenta la velocità di movimento. HP: +50",
         trigger: "Sempre attiva",
         bonus: { hp: 50 },
       },
@@ -33,20 +33,20 @@ const raceList = [
     racialAbilities: [
       {
         abilityName: "Forte come la Montagna",
-        description: "Aumenta la forza fisica per infliggere danni.",
+        description: "Aumenta la forza fisica per infliggere danni. ATT: +5",
         trigger: "Sempre attiva",
         bonus: { attack: 5 },
       },
       {
         abilityName: "Resistenza di Pietra",
-        description: "Aumenta la resistenza ai danni fisici.",
+        description: "Aumenta la resistenza ai danni fisici. DEF: +3",
         trigger: "Sempre attiva",
         bonus: { defense: 3 },
       },
       {
         abilityName: "Mastro Artigiano",
         description:
-          "Aumenta la capacità di riparare oggetti e migliorare armi.",
+          "Aumenta la capacità di riparare oggetti e migliorare armi. HP: +150",
         trigger: "Sempre Attiva",
         bonus: { hp: 150 },
       },
@@ -60,13 +60,14 @@ const raceList = [
     racialAbilities: [
       {
         abilityName: "Determinazione",
-        description: "Aumenta la determinazione in battaglia.",
+        description: "Aumenta la determinazione in battaglia.ATT: +10",
         trigger: "Durante combattimenti difficili",
         bonus: { attack: 10 },
       },
       {
         abilityName: "Senso di Giustizia",
-        description: "Aumenta la protezione contro gli attacchi ingiusti.",
+        description:
+          "Aumenta la protezione contro gli attacchi ingiusti. DEF: +5",
         trigger: "Contro nemici malvagi",
         bonus: { defense: 5 },
       },
@@ -80,13 +81,14 @@ const raceList = [
     racialAbilities: [
       {
         abilityName: "Furia del Guerriero",
-        description: "Aumenta la forza in combattimento quando ferito.",
+        description:
+          "Aumenta la forza in combattimento quando ferito. ATT: +5 quando la vita è sotto il 50%",
         trigger: "Quando HP < 50%",
         bonus: { attack: 5, condition: "lowHP" },
       },
       {
         abilityName: "Resistenza Selvaggia",
-        description: "Aumenta la resistenza agli attacchi fisici.",
+        description: "Aumenta la resistenza agli attacchi fisici. DEF: +3",
         trigger: "Sempre attiva",
         bonus: { defense: 3 },
       },
@@ -100,13 +102,13 @@ const raceList = [
     racialAbilities: [
       {
         abilityName: "Forza Necrotica",
-        description: "Aumenta la potenza fisica derivante dalla morte.",
+        description: "Aumenta la potenza fisica derivante dalla morte. ATT: +4",
         trigger: "Sempre attiva",
         bonus: { attack: 4 },
       },
       {
         abilityName: "Senso della Morte",
-        description: "Percepisce i nemici nelle vicinanze.",
+        description: "Percepisce i nemici nelle vicinanze. HP: +200",
         trigger: "Quando nemici sono vicini",
         trigger: "Sempre Attiva",
         bonus: { hp: 200 },

@@ -14,7 +14,7 @@ function App() {
   const [playerStats, SetPlayerStats] = useState(null);
   const [selectedWeapon, setSelectedWeapon] = useState();
   const [selectedSkill, setSelectedSkill] = useState(""); // Per tracciare l'abilità selezionata
-
+  const [step, setStep] = useState(1);
   function handleSubmit(e) {
     e.preventDefault();
 
@@ -26,6 +26,7 @@ function App() {
     const choosedAbility = choosedRace.racialAbilities.find(
       (ability) => ability.abilityName === selectedSkill
     );
+    console.log(choosedAbility);
 
     // Crea il personaggio con la razza, l'abilità e l'arma
     const player = new Player(
@@ -35,7 +36,7 @@ function App() {
         choosedRace.defense,
         choosedRace.hp,
         choosedRace.type,
-        choosedRace.racialAbilities // Passa direttamente le abilità razziali
+        choosedAbility // Passa direttamente le abilità razziali
       ),
       new Weapon(
         choosedWeapon.name,
@@ -53,101 +54,103 @@ function App() {
   return (
     <>
       <div className="container py-5">
-        <form
-          onSubmit={handleSubmit}
-          className="p-4 border rounded bg-light shadow-sm"
-        >
-          <h4 className="mb-3 text-center">Crea il tuo personaggio</h4>
-
+        {step === 1 && (
           <div className="mb-4">
             <label className="form-label">Nome del giocatore</label>
             <input
               type="text"
               className="form-control"
               name="name"
-              placeholder="Inserisci il nome del giocatore"
+              placeholder="Inserisci il nome"
               onChange={(e) => setTitle(e.target.value)}
               value={title}
             />
+            <button
+              className="btn btn-primary mt-2"
+              onClick={() => title && setStep(2)}
+            >
+              Avanti
+            </button>
           </div>
+        )}
 
-          <div className="row mb-4">
-            <div className="col-md-6">
-              <label className="form-label">Scegli la razza</label>
-              {raceList.map((race, index) => (
-                <div className="form-check" key={index}>
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="race"
-                    id={`race-${index}`}
-                    onChange={(e) => setType(e.target.value)}
-                    value={race.type}
-                    checked={type === race.type}
-                  />
-                  <label className="form-check-label" htmlFor={`race-${index}`}>
-                    <strong>{race.type}</strong> – att: {race.attack}, def:{" "}
-                    {race.defense}, hp: {race.hp}
-                  </label>
-                </div>
-              ))}
-            </div>
-
-            <div className="col-md-6">
-              <label className="form-label">Scegli l'arma</label>
-              {weaponList.map((w, index) => (
-                <div className="form-check" key={index}>
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="weapon"
-                    id={`weapon-${index}`}
-                    onChange={(e) => setWeapon(e.target.value)}
-                    value={w.name}
-                    checked={weapon === w.name}
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor={`weapon-${index}`}
-                  >
-                    <strong>{w.name}</strong> – att: +{w.bonusAttack}, def: +
-                    {w.bonusDefense}
-                  </label>
-                </div>
-              ))}
-            </div>
+        {step === 2 && (
+          <div className="mb-4">
+            <label className="form-label">Scegli la razza</label>
+            {raceList.map((race, index) => (
+              <div className="form-check" key={index}>
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="race"
+                  value={race.type}
+                  onChange={(e) => {
+                    setType(e.target.value);
+                    setSelectedRace(race); // questo serve per mostrare le abilità nel prossimo step
+                  }}
+                  checked={type === race.type}
+                />
+                <label className="form-check-label">{race.type}</label>
+              </div>
+            ))}
+            <button
+              className="btn btn-primary mt-2"
+              onClick={() => selectedRace && setStep(3)}
+            >
+              Avanti
+            </button>
           </div>
+        )}
 
-          {/* Selezione delle abilità razziali */}
-          {selectedRace && (
-            <div className="mb-4">
-              <label className="form-label">Scegli un'abilità razziale</label>
-              {selectedRace.racialAbilities.map((skill, index) => (
-                <div className="form-check" key={index}>
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    name="skill"
-                    id={`skill-${index}`}
-                    onChange={(e) => setSelectedSkill(e.target.value)}
-                    value={skill.abilityName}
-                    checked={selectedSkill === skill.abilityName}
-                  />
-                  <label
-                    className="form-check-label"
-                    htmlFor={`skill-${index}`}
-                  >
-                    <strong>{skill.abilityName}</strong> – {skill.description}
-                  </label>
-                </div>
-              ))}
-            </div>
-          )}
+        {step === 3 && selectedRace && (
+          <div className="mb-4">
+            <label className="form-label">Scegli un'abilità razziale</label>
+            {selectedRace.racialAbilities.map((skill, index) => (
+              <div className="form-check" key={index}>
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="skill"
+                  value={skill.abilityName}
+                  onChange={(e) => setSelectedSkill(e.target.value)}
+                  checked={selectedSkill === skill.abilityName}
+                />
+                <label className="form-check-label">
+                  {skill.abilityName} -
+                </label>
+                <small> {skill.description}</small>
+              </div>
+            ))}
+            <button
+              className="btn btn-primary mt-2"
+              onClick={() => selectedSkill && setStep(4)}
+            >
+              Avanti
+            </button>
+          </div>
+        )}
 
-          <button type="submit" className="btn btn-primary w-100">
-            Conferma
-          </button>
-        </form>
+        {step === 4 && (
+          <div className="mb-4">
+            <label className="form-label">Scegli l'arma</label>
+            {weaponList.map((w, index) => (
+              <div className="form-check" key={index}>
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="weapon"
+                  value={w.name}
+                  onChange={(e) => setWeapon(e.target.value)}
+                  checked={weapon === w.name}
+                />
+                <label className="form-check-label">{w.name}</label>
+              </div>
+            ))}
+            <button className="btn btn-success mt-2" onClick={handleSubmit}>
+              Crea il personaggio
+            </button>
+          </div>
+        )}
 
         <div className="row mt-4">
           <div className="col-lg-12">
