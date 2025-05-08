@@ -7,7 +7,13 @@ export default class Player {
 
   constructor(name, race, weapon) {
     this.title = name;
-    this.race = new Race(race.attack, race.defense, race.hp, race.type);
+    this.race = new Race(
+      race.attack,
+      race.defense,
+      race.hp,
+      race.type,
+      race.racialAbilities
+    );
     this.weapon = new Weapon(
       weapon.name,
       weapon.bonusAttack,
@@ -22,9 +28,23 @@ export default class Player {
     this.bonusDefense = this.weapon.bonusDefense;
   }
 
-  saluto() {
-    console.log(
-      `ciao sono ${this.name},sono un ${this.race.type} ed ho ${this.race.attack} di attacco e ${this.race.defense} di difesa. La mia vita è di ${this.race.hp}.`
-    );
+  applyPassiveBonuses() {
+    this.race.racialAbilities.forEach((ability) => {
+      if (ability.trigger === "sempre attiva") {
+        const bonus = ability.bonus;
+        if (bonus.attack) this.attack += bonus.attack;
+        if (bonus.defense) this.defense += bonus.defense;
+        if (bonus.hp) this.hp += bonus.hp;
+      }
+    });
+  }
+
+  applyConditonalBonuses(currentHP) {
+    this.race.racialAbilities.forEach((ability) => {
+      if (ability.trigger === "Quando HP < 50%" && currentHP < this.hp / 2) {
+        const bonus = ability.bonus;
+        if (bonus.attack) this.attack += bonus.attack;
+      }
+    });
   }
 }

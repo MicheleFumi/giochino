@@ -3,11 +3,13 @@ export default class Race {
   attack;
   defense;
   hp;
+  racialAbilities;
 
-  constructor(attack, defense, hp, type) {
+  constructor(attack, defense, hp, type, racialAbilities) {
     this.attack = attack;
     this.defense = defense;
     this.hp = hp;
     this.type = type;
+    this.racialAbilities = racialAbilities;
   }
 }
